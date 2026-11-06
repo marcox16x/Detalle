@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0a0507">
+    <meta name="description" content="Una página para celebrar nuestros tres meses.">
+    <title>Felices 3 Meses ♡</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Dancing+Script:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/config.js" defer></script>
+    <script src="js/main.js" defer></script>
+  </head>
+  <body>
+    <canvas id="petals" aria-hidden="true"></canvas>
+
+    <div class="login-gate" id="login-gate" role="dialog" aria-modal="true" aria-labelledby="login-title">
+      <div class="login-card">
+        <span class="login-heart" aria-hidden="true">♥</span>
+        <p class="intro-kicker">Un espacio para nosotros</p>
+        <h1 id="login-title">Una historia especial</h1>
+        <p>Ingresa la contraseña para continuar.</p>
+        <form id="login-form">
+          <label for="login-password">Contraseña</label>
+          <div class="password-field">
+            <input id="login-password" name="password" type="password" autocomplete="current-password" required>
+            <button id="toggle-password" type="button" aria-label="Mostrar contraseña" aria-pressed="false">Mostrar</button>
+          </div>
+          <button class="pill-button" type="submit">Entrar ♡</button>
+          <p class="login-error" id="login-error" role="alert" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+
+    <div class="intro-screen" id="intro-screen" role="dialog" aria-modal="true" aria-labelledby="intro-title">
+      <div class="intro-scene" aria-hidden="true">
+        <span class="intro-moon"></span>
+        <span class="intro-petal p1">✿</span>
+        <span class="intro-petal p2">✿</span>
+        <span class="intro-petal p3">✿</span>
+        <span class="intro-gate">鳥居</span>
+      </div>
+      <div class="intro-copy">
+        <span class="intro-kicker">Una historia para celebrar</span>
+        <h2 id="intro-title" data-bind="openingTitle"></h2>
+        <p data-bind="openingText"></p>
+        <button class="pill-button" id="enter-site" data-bind="enterLabel"></button>
+      </div>
+      <button class="intro-skip" id="skip-intro">Saltar intro <span aria-hidden="true">→</span></button>
+    </div>
+
+    <header class="site-header">
+      <nav class="nav-pill" aria-label="Navegación principal">
+        <a class="brand" href="#inicio">♥ <span>Nosotros</span> ♡</a>
+        <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+        <div class="nav-links">
+          <a href="#inicio">Inicio</a>
+          <a href="#historia">Nuestra Historia</a>
+          <a href="#recuerdos">Recuerdos</a>
+          <a href="#carta">Carta</a>
+          <a href="#cancion">Canción</a>
+          <a href="#sorpresa">Sorpresa</a>
+        </div>
+        <button class="nav-heart" id="hidden-heart" type="button" aria-label="Corazón secreto, púlsame cinco veces">♡</button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="inicio" class="hero section">
+        <div class="hero-art" aria-hidden="true">
+          <div class="moon"></div>
+          <div class="torii"><i></i><b></b><em></em></div>
+          <div class="lantern">✦</div>
+          <div class="city"></div>
+          <div class="couple"><i></i><b></b></div>
+        </div>
+        <button class="easter-moon" id="easter-moon" type="button" aria-label="Luna secreta"></button>
+        <div class="hero-copy reveal">
+          <p class="date">— <span data-bind="date"></span> —</p>
+          <h1>Felices<br>3 Meses <span class="glow-heart">♡</span></h1>
+          <p data-bind="intro"></p>
+          <div class="relationship-counters" aria-label="Tiempo juntos y cuenta regresiva">
+            <div class="counter-card">
+              <span class="counter-title">Juntos desde hace</span>
+              <div class="counter-values"><span><strong id="elapsed-days">0</strong><small>días</small></span><span><strong id="elapsed-hours">00</strong><small>h</small></span><span><strong id="elapsed-minutes">00</strong><small>min</small></span><span><strong id="elapsed-seconds">00</strong><small>seg</small></span></div>
+            </div>
+            <div class="counter-card">
+              <span class="counter-title">Próximo aniversario</span>
+              <div class="counter-values"><span><strong id="anniversary-days">0</strong><small>días</small></span><span><strong id="anniversary-hours">00</strong><small>h</small></span><span><strong id="anniversary-minutes">00</strong><small>min</small></span><span><strong id="anniversary-seconds">00</strong><small>seg</small></span></div>
+            </div>
+          </div>
+          <a class="pill-button" href="#historia">Comenzar ♡ <span>›</span></a>
+        </div>
+        <a class="down-arrow" href="#historia" aria-label="Desplazarse a Nuestra Historia">⌄</a>
+      </section>
+
+      <section id="historia" class="section content-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Nuestra aventura</p>
+          <h2>Nuestra Historia <span>♡</span></h2>
+          <p>Una pequeña línea de tiempo de esta hermosa aventura...</p>
+        </div>
+        <div class="timeline" id="timeline"></div>
+      </section>
+
+      <section id="recuerdos" class="section content-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Instantes favoritos</p>
+          <h2>Nuestros Recuerdos <span>♡</span></h2>
+          <p>Pequeños momentos que hacen grande esta historia...</p>
+        </div>
+        <div class="carousel reveal">
+          <button class="circle-arrow prev" aria-label="Foto anterior">‹</button>
+          <div class="carousel-window">
+            <div class="carousel-track" id="gallery"></div>
+          </div>
+          <button class="circle-arrow next" aria-label="Foto siguiente">›</button>
+        </div>
+        <div class="dots" id="dots" aria-label="Paginación del carrusel"></div>
+      </section>
+
+      <section id="carta" class="section content-section letter-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Con todo mi cariño</p>
+          <h2>Una Carta para Ti <span>♡</span></h2>
+        </div>
+        <button class="envelope reveal" id="open-letter" aria-label="Abrir la carta">
+          <span class="envelope-flap"></span>
+          <span class="wax">♡</span>
+          <span class="envelope-note">Ábrela, mi amor... ♡</span>
+        </button>
+      </section>
+
+      <section id="cancion" class="section content-section song-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Nuestra banda sonora</p>
+          <h2>Nuestra melodía <span>♡</span></h2>
+          <p>Un pequeño detalle musical para recordar este momento...</p>
+        </div>
+        <div class="player reveal">
+          <button class="album-cover" id="album-cover" type="button" aria-label="Portada de nuestra canción, púlsame cinco veces">♫</button>
+          <div class="track-info">
+            <h3 data-bind="songTitle"></h3>
+            <p id="song-artist">Playlist: Nosotros</p>
+          </div>
+          <button class="favorite" aria-label="Marcar como favorita">♡</button>
+          <audio id="audio" preload="metadata"></audio>
+          <input id="progress" class="progress" type="range" min="0" max="100" value="0" aria-label="Progreso de la canción">
+          <div class="times">
+            <span id="elapsed">0:00</span>
+            <span id="duration">0:00</span>
+          </div>
+          <div class="controls">
+            <button aria-label="Reproducción aleatoria" id="shuffle">⤨</button>
+            <button aria-label="Anterior" id="previous">|◀</button>
+            <button class="play" aria-label="Reproducir" id="play">▶</button>
+            <button aria-label="Siguiente" id="next">▶|</button>
+            <button aria-label="Repetir" id="repeat">↻</button>
+          </div>
+          <label class="volume-control" for="volume">
+            <span aria-hidden="true">🔈</span>
+            <span class="sr-only">Volumen</span>
+            <input id="volume" type="range" min="0" max="1" step="0.01" value="0.75" aria-label="Volumen de la canción">
+            <span aria-hidden="true">🔊</span>
+          </label>
+          <p class="audio-hint" id="audio-hint"></p>
+        </div>
+        <div class="track-modules reveal" id="track-modules" aria-label="Canciones de nuestra playlist"></div>
+      </section>
+
+      <section id="sorpresa" class="section content-section surprise-section">
+        <div class="gift-wrap reveal">
+          <button class="gift" id="gift" aria-label="Descubrir la sorpresa">
+            <span class="gift-lid"><i></i></span>
+            <span class="gift-box"><i></i></span>
+          </button>
+        </div>
+        <div class="surprise-copy reveal">
+          <p class="eyebrow">Un detalle para ti</p>
+          <h2>Una Sorpresa para Ti <span>♡</span></h2>
+          <p data-bind="surpriseText"></p>
+          <button class="pill-button" id="surprise-button">Descubrir Sorpresa ♡</button>
+          <p class="surprise-question" id="surprise-question" aria-live="polite"></p>
+          <div class="answer-options" id="answer-options" hidden>
+            <button class="pill-button answer-yes" id="answer-yes">Sí ♡</button>
+            <button class="pill-button answer-no" id="answer-no">No</button>
+          </div>
+          <div id="surprise-message" class="surprise-message" aria-live="polite"></div>
+        </div>
+      </section>
+    </main>
+
+    <button class="background-music-toggle" id="background-music-toggle" type="button" aria-pressed="false"><span aria-hidden="true">♫</span><span id="background-music-label">Música de fondo: apagada</span></button>
+    <audio id="background-audio" loop preload="none"></audio>
+    <footer>Hecho con amor, para nosotros @Marcuito <span>♡</span></footer>
+    <div class="easter-toast" id="easter-toast" role="status" aria-live="polite"></div>
+    <button class="petal-egg-button" id="petal-egg-button" type="button" aria-label="Descubrir el secreto del pétalo" title="Un secreto de sakura">✿</button>
+
+    <div class="no-ending" id="no-ending" role="dialog" aria-modal="true" aria-labelledby="no-ending-title" aria-hidden="true">
+      <span class="no-curtain curtain-left" aria-hidden="true"></span><span class="no-curtain curtain-right" aria-hidden="true"></span>
+      <div class="cry-card"><div class="crying-face" aria-hidden="true">🥺</div><p class="intro-kicker">Final dramático</p><h2 id="no-ending-title">Ay, bueno... 😿</h2><p data-bind="surpriseNoMessage"></p><button class="pill-button" id="retry-surprise">Volver a la sorpresa ♡</button></div>
+    </div>
+
+    <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Recuerdo ampliado">
+      <button class="modal-close" aria-label="Cerrar">×</button>
+      <img src="" alt="">
+      <video id="lightbox-video" muted loop playsinline preload="none" aria-label="Video de recuerdo"></video>
+      <p></p>
+    </div>
+    <div class="letter-modal" id="letter-modal" aria-modal="true" role="dialog" aria-labelledby="letter-title">
+      <button class="modal-close" aria-label="Cerrar">×</button>
+      <article class="letter-paper">
+        <p class="eyebrow">Para mi persona favorita</p>
+        <h2 id="letter-title">Una carta para ti</h2>
+        <p id="letter-text"></p>
+        <span class="signature" data-bind="signature"></span>
+      </article>
+    </div>
+  </body>
+</html>
